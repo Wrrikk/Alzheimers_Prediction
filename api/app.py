@@ -31,6 +31,11 @@ def postprocess(predictions):
     return predicted_classes
 
 
+@app.route("/")
+def hello():
+    return "Hello, world!"
+
+
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
