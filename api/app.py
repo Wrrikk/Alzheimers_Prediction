@@ -16,14 +16,13 @@ models_dir = "/api/models"
 
 # Load the trained model using TFSMLayer
 model_path = os.path.join(models_dir, "final_model_saved")
-model = TFSMLayer(model_path, call_endpoint="serving_default")
+model = TFSMLayer(model_path, call_endpoint='serving_default')
 print("Model loaded successfully.")
 
 # Load the preprocessor and label encoder
 preprocessor = joblib.load(os.path.join(models_dir, "preprocessor.joblib"))
 label_encoder = joblib.load(os.path.join(models_dir, "label_encoder.joblib"))
 print("Preprocessors loaded successfully.")
-
 
 def postprocess(predictions):
     """
@@ -34,11 +33,9 @@ def postprocess(predictions):
     )
     return predicted_classes
 
-
 @app.route("/")
 def hello():
     return "Hello, world!"
-
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -75,7 +72,6 @@ def predict():
     except Exception as e:
         # Return an error message in case of issues in the process
         return jsonify({"error": str(e), "message": "Error processing request"}), 500
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
