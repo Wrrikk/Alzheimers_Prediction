@@ -6,7 +6,6 @@ import numpy as np
 import joblib
 import os
 import scipy.sparse
-from keras.layers import TFSMLayer
 
 app = Flask(__name__)
 CORS(app, resources={r"/predict": {"origins": "http://localhost:5173"}})
@@ -14,15 +13,16 @@ CORS(app, resources={r"/predict": {"origins": "http://localhost:5173"}})
 # Define the absolute path to the directory where the model and preprocessors are saved
 models_dir = "/api/models"
 
-# Load the trained model using TFSMLayer
+# Load the trained model
 model_path = os.path.join(models_dir, "final_model_saved")
-model = TFSMLayer(model_path, call_endpoint='serving_default')
+model = tf.saved_model.load(model_path)
 print("Model loaded successfully.")
 
 # Load the preprocessor and label encoder
 preprocessor = joblib.load(os.path.join(models_dir, "preprocessor.joblib"))
 label_encoder = joblib.load(os.path.join(models_dir, "label_encoder.joblib"))
 print("Preprocessors loaded successfully.")
+
 
 def postprocess(predictions):
     """
@@ -33,9 +33,11 @@ def postprocess(predictions):
     )
     return predicted_classes
 
+
 @app.route("/")
 def hello():
     return "Hello, world!"
+
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -51,6 +53,9 @@ def predict():
         # Convert sparse matrix to dense format
         if isinstance(processed_data, scipy.sparse.spmatrix):
             processed_data = processed_data.toarray()
+
+        # Convert processed data to float32
+        processed_data = processed_data.astype(np.float32)
 
         # Print the preprocessed data for debugging
         print("Preprocessed data:", processed_data)
@@ -72,6 +77,7 @@ def predict():
     except Exception as e:
         # Return an error message in case of issues in the process
         return jsonify({"error": str(e), "message": "Error processing request"}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

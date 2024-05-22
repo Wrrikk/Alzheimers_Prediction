@@ -9,17 +9,14 @@ COPY requirements.txt /api/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Flask application code into the container
-COPY api /api
-
-# Copy the model directory into the container
-COPY models /api/models
+COPY . /api
 
 # Expose the port the app runs on
 EXPOSE 5000
 
 # Define environment variables for Flask
 ENV FLASK_ENV=production
-ENV FLASK_APP=app.py
+ENV FLASK_APP=api.app:app
 
-# Run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Run the Flask application with Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "api.app:app"]
