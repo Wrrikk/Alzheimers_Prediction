@@ -15,6 +15,7 @@ const Home = () => {
   const [shortName, setShortName] = useState("");
   const [longName, setLongName] = useState("");
   const [desc, setDesc] = useState("");
+  const [source, setSource] = useState("");
   const [showModal, setShowModal] = useState(false); 
 
   const handleUpload = () => {
@@ -65,6 +66,7 @@ const Home = () => {
       setShortName(respData);
       setLongName(AlzheimerStageData[respData]["name"]);
       setDesc(AlzheimerStageData[respData]["desc"]);
+      setSource(AlzheimerStageData[respData]["img_src"]);
 
       setShowModal(true); 
     };
@@ -90,7 +92,6 @@ const Home = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    setText(""); 
   };
 
   return (
@@ -120,7 +121,7 @@ const Home = () => {
       </div>
       <DescNums />
 
-      {showModal && <TextModal short={shortName} long={longName} desc={desc} onClose={closeModal} />}
+      {showModal && <TextModal short={shortName} long={longName} desc={desc} source={source} onClose={closeModal} />}
     </SectionWrapper>
   );
 };

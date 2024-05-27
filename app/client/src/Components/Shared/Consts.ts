@@ -22,6 +22,11 @@ import user3 from '@/assets/Images/users/user3.jpg';
 
 import logo from '@/assets/Images/logo.png';
 
+import CN from "@/assets/images/CN.png";
+import SMC from  "@/assets/images/SMC.png";
+import EMCI from  "@/assets/images/EMCI.jpg";
+import LMCI from  "@/assets/images/LMCI.png";
+
 export const links = ['Home', 'Doctors', 'Services', 'Reviews'];
 
 export const descNums = [
@@ -269,17 +274,21 @@ export const AlzheimerStageData = {
   "CN": {
     "name": "Cognitively Normal",
     "desc": "Based on the information provided, your cognitive functions appear to be within the normal range. It's important to continue engaging in activities that support brain health, such as regular physical exercise, a balanced diet, and cognitive challenges. Remember, regular check-ups with your healthcare provider are key to maintaining your health.",
+    "img_src": CN,
   },
   "SMC": {
     "name": "Subjective Memory Complaints",
     "desc": "Our assessment suggests that you might be experiencing subjective memory complaints. While this doesn't necessarily indicate significant cognitive impairment, it's important to monitor these symptoms. Consider discussing your experiences with a healthcare professional who can provide you with further guidance and support. Keeping a diary of your memory complaints might also help in understanding and communicating your experiences better.",
+    "img_src": SMC,
   },
   "EMCI": {
     "name": "Early Mild Cognitive Impairment",
     "desc": "The results indicate signs of early mild cognitive impairment. While this is not uncommon, it's important to take steps to manage and monitor your condition. Engaging with a healthcare professional for regular assessments and discussing possible interventions is recommended. Lifestyle changes, including increased physical activity, mental exercises, and a healthy diet, can also be beneficial. You're not alone, and there are resources and support systems available.",
+    "img_src": EMCI,
   },
   "LMCI": {
     "name": "Late Mild Cognitive Impairment",
     "desc": "Your assessment suggests late mild cognitive impairment. This stage may impact daily activities and might require adaptations to your lifestyle. We recommend seeking advice from healthcare professionals who can guide you through managing symptoms effectively. Consider exploring support groups and community resources. Staying mentally active, maintaining social contacts, and regular medical check-ups are important steps.",
+    "img_src": LMCI,
   },
 };
