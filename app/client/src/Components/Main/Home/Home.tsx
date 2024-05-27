@@ -5,13 +5,16 @@ import DescNums from './DescNums';
 import SectionWrapper from '../SectionWrapper';
 import TextModal from '../../UI/TextModal'; 
 import axios from 'axios';
+import { AlzheimerStageData } from '@/Components/Shared/Consts';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const alzheimer_prediction_url = 'https://alzheimers-prediction.onrender.com/predict';
 
 const Home = () => {
   const fileInputRef = useRef(null);
-  const [text, setText] = useState("");
+  const [shortName, setShortName] = useState("");
+  const [longName, setLongName] = useState("");
+  const [desc, setDesc] = useState("");
   const [showModal, setShowModal] = useState(false); 
 
   const handleUpload = () => {
@@ -29,7 +32,7 @@ const Home = () => {
       const pdf = await pdfjs.getDocument({ data: typedarray }).promise;
       const extractedText = await extractText(pdf);
 
-      setText(extractedText);
+      // setText(extractedText);
       // console.log(extractedText);
 
       const jsonObject = {};
@@ -57,38 +60,11 @@ const Home = () => {
           'Access-Control-Allow-Credentials': true,
         },
       });
-      console.log(response.data);
-
-      // const text = extractedText.replace(/Alzheimer's Patient Medical Report\s+Patient Information\s+Field\s+Value/g, '')
-      // .replace(/Cognitive and Functional Assessments\s+Field\s+Value/g, '')
-      // .replace(/Baseline Measurements\s+Field\s+Value/g, '');
-
-      // const keyValuePairs = text.match(/\[(.*?)\]\s+([^[]*)/g);
-      // const data: any = {};
-
-      // if (keyValuePairs) {
-      //     for (const pair of keyValuePairs) {
-      //         const matches = pair.match(/\[(.*?)\]\s+([^[]*)/);
-      //         if (matches && matches.length === 3) {
-      //             const key = matches[1].trim();
-      //             let value: any = matches[2].trim();
-
-      //             // Convert numeric values to numbers
-      //             if (!isNaN(Number(value))) {
-      //                 value = parseFloat(value);
-      //             }
-
-      //             // Convert "null" strings to null
-      //             if (value === 'null') {
-      //                 value = null;
-      //             }
-
-      //             data[key] = value;
-      //         }
-      //     }
-      // }
-
-      // console.log(data);
+      // console.log(response.data[0]);
+      const respData = response.data[0];
+      setShortName(respData);
+      setLongName(AlzheimerStageData[respData]["name"]);
+      setDesc(AlzheimerStageData[respData]["desc"]);
 
       setShowModal(true); 
     };
@@ -144,7 +120,7 @@ const Home = () => {
       </div>
       <DescNums />
 
-      {showModal && <TextModal text={text} onClose={closeModal} />}
+      {showModal && <TextModal short={shortName} long={longName} desc={desc} onClose={closeModal} />}
     </SectionWrapper>
   );
 };
