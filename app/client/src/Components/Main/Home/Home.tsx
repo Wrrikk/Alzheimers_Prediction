@@ -33,8 +33,7 @@ const Home = () => {
       const pdf = await pdfjs.getDocument({ data: typedarray }).promise;
       const extractedText = await extractText(pdf);
 
-      // setText(extractedText);
-      // console.log(extractedText);
+      console.log(extractedText);
 
       const jsonObject = {};
       const cleanedText = extractedText.replace("Alzheimer's Patient Medical Report", '').replace('Not Hisp/Latino', 'Not_Hisp/Latino').trim();
@@ -54,6 +53,8 @@ const Home = () => {
         }
       }
       
+      console.log(jsonObject);
+
       const response = await axios.post(alzheimer_prediction_url, jsonObject, {
         headers: {
           'Content-Type': 'application/json',
