@@ -9,7 +9,7 @@ type Props = {
 const Doctor = ({ doc }: Props) => {
   return (
     <div>
-      <div className="bg-[#9ae7ff] p-3 pb-0 rounded-tl-[100px] rounded-br-[100px] lg:rounded-tl-[130px] lg:rounded-br-[120px] overflow-hidden">
+      <div className="bg-[#9ae7ff] p-3 pb-0 rounded-tl-[100px] rounded-br-[100px] lg:rounded-tl-[130px] lg:rounded-br-[120px] overflow-hidden max-h-[330px]">
         <img className="min-w-[180px]" src={doc.img} alt={doc.name} />
       </div>
       <div className="pb-5 pt-3">

@@ -11,10 +11,9 @@ import seeMoreImage from '@/assets/Images/Icons/seeMoreImage.png';
 import Banner1 from '@/assets/Images/Banner1.png';
 import Banner2 from '@/assets/Images/Banner2.png';
 
-import doc1 from '@/assets/Images/Doctors/doc1.png';
-import doc2 from '@/assets/Images/Doctors/doc2.png';
-import doc3 from '@/assets/Images/Doctors/doc3.png';
-import doc4 from '@/assets/Images/Doctors/doc4.png';
+import doc1 from '@/assets/Images/Doctors/anirban.png';
+import doc2 from '@/assets/Images/Doctors/kulin.png';
+import doc3 from '@/assets/Images/Doctors/aditya.png';
 
 import user1 from '@/assets/Images/users/user1.jpg';
 import user2 from '@/assets/Images/users/user2.jpg';
@@ -31,24 +30,16 @@ export const links = ['Home', 'Doctors', 'Services', 'Reviews'];
 
 export const descNums = [
   {
-    num: '500+',
-    text: 'Expert Doctors',
+    num: '11k+',
+    text: 'Reports Analyzed',
   },
   {
-    num: '20k+',
-    text: 'Happy Patients',
+    num: '80+',
+    text: 'Parameters/Report',
   },
   {
-    num: '24/7',
-    text: 'Emergency Service',
-  },
-  {
-    num: '100+',
-    text: 'Operation Theatres',
-  },
-  {
-    num: '850+',
-    text: 'Hospital Rooms',
+    num: '99.66%',
+    text: 'Accuracy',
   },
 ];
 
@@ -203,27 +194,22 @@ export const Banner1Data = {
 };
 
 export const DoctorsData = {
-  heading: 'Meet Our Specialists',
+  heading: 'Meet Our Team',
   doctors: [
     {
       img: doc1,
-      name: 'Dr. John Smith',
-      job: 'Cardiologist',
+      name: 'Anirban Roy',
+      job: '2020ITB001',
     },
     {
       img: doc2,
-      name: 'Dr. Kristin Watson',
-      job: 'Dentist',
+      name: 'Kulin Kumar',
+      job: '2020ITB026',
     },
     {
       img: doc3,
-      name: 'Dr. Robert Flores',
-      job: 'Surgeon',
-    },
-    {
-      img: doc4,
-      name: 'Dr. Katherine Allen',
-      job: 'Neurologist',
+      name: 'Aditya Das',
+      job: '2020ITB058',
     },
   ],
   heading2: 'Who Are We?',
@@ -257,16 +243,9 @@ export const FeedbackData = {
 
 export const FooterData = {
   logo: logo,
-  addresses: ['4517 Washington Ave', 'Manchester, Kentucky 39495'],
+  addresses: ['IIEST, Shibpur', 'Howrah, West Bengal 711103'],
   phone: '+1 (505) 555-0125',
-  departments: [
-    'Cardiology',
-    'Dentistry',
-    'Neurology',
-    'Orthopedics',
-    'Surgery',
-    'More',
-  ],
+  departments: [ ],
   links: links,
 };
 
